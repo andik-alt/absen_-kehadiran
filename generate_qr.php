@@ -74,7 +74,7 @@ require_once "config.php";
                 <i class="fa-solid fa-print me-2"></i> Cetak Kartu
             </button>
 
-            <a href="data_peserta.php" class="btn btn-dark fw-semibold">
+            <a href="peserta.php" class="btn btn-dark fw-semibold">
                 Kembali ke Data Peserta
             </a>
         </div>
@@ -95,28 +95,7 @@ document.getElementById('btnSimpan').addEventListener('click', function() {
     html2canvas(targetElement, {
         scale: 2, // Meningkatkan resolusi gambar agar tidak pecah/tajam
         useCORS: true
-    }).then(canvas => {
-        // Ubah canvas menjadi URL data gambar (PNG)
-        const imageURL = canvas.toDataURL('image/png');
-
-        // Buat elemen link virtual untuk mendownload file
-        const downloadLink = document.createElement('a');
-        downloadLink.href = imageURL;
-        downloadLink.download = 'Kartu-Akses-andik.png'; // Nama file unduhan
-        
-        // Picu klik otomatis
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-
-        // Kembalikan tombol ke semula
-        btn.innerHTML = '<i class="fa-solid fa-download me-2"></i> Simpan QR Code (Gambar)';
-        btn.disabled = false;
-    }).catch(err => {
-        alert('Gagal menyimpan QR Code: ' + err);
-        btn.innerHTML = '<i class="fa-solid fa-download me-2"></i> Simpan QR Code (Gambar)';
-        btn.disabled = false;
-    });
+    }
 });
 </script>
 </body>

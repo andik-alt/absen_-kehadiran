@@ -39,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $pesan_utama = "Token Tidak Valid";
         $pesan_detail = "QR Code atau token yang dimasukkan kosong/tidak terbaca dengan benar.";
     } else {
-        // Ambil data peserta berdasarkan qr_token
-        $stmt = mysqli_prepare($conn, "SELECT id, nama, instansi FROM peserta WHERE qr_token = ?");
+        // Perbaikan: Mengubah 'instansi' menjadi 'pangkat' sesuai struktur database
+        $stmt = mysqli_prepare($conn, "SELECT id, nama, pangkat FROM peserta WHERE qr_token = ?");
         mysqli_stmt_bind_param($stmt, "s", $token);
         mysqli_stmt_execute($stmt);
         $peserta = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
@@ -70,7 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if (mysqli_stmt_execute($insert)) {
                     $status_type = "success";
                     $pesan_utama = "Check-in Berhasil!";
-                    $pesan_detail = "Kehadiran untuk <strong>" . htmlspecialchars($peserta['nama']) . "</strong> (" . htmlspecialchars($peserta['instansi'] ?: 'Umum/Mandiri') . ") berhasil dicatat ke sistem.";
+                    // Menyesuaikan variabel tampilkan pangkat
+                    $pangkat_info = !empty($peserta['pangkat']) ? " (" . htmlspecialchars($peserta['pangkat']) . ")" : "";
+                    $pesan_detail = "Kehadiran untuk <strong>" . htmlspecialchars($peserta['nama']) . "</strong>" . $pangkat_info . " berhasil dicatat ke sistem.";
                 } else {
                     $status_type = "danger";
                     $pesan_utama = "Gagal Menyimpan";
@@ -151,7 +153,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 
 <script>
-    // Waktu hitung mundur dalam detik
     let timeLeft = 5;
     const countdownEl = document.getElementById('countdown');
 

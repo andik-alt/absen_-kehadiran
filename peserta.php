@@ -61,6 +61,16 @@ function e($value) {
         </a>
     </div>
 
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a href="tambah_event.php" class="btn btn-primary">
+            + Tambah acara
+        </a>
+    </div>
+    <a href="dashboard.php" class="btn btn-secondary btn-sm mt-3">
+                Kembali ke Dashboard
+    </a>
+
+
     <div class="card border-0 shadow-sm">
         <div class="card-body">
 
@@ -113,10 +123,7 @@ function e($value) {
                 </table>
             </div>
 
-            <a href="dashboard.php" class="btn btn-secondary btn-sm mt-3">
-                Kembali ke Dashboard
-            </a>
-
+            
         </div>
     </div>
 </div>
