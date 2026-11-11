@@ -1,0 +1,87 @@
+/* =================================================r
+ * EventAttend - Main Stylesheet
+ * ================================================= */
+
+:root {
+    --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --bg-light: #f8f9fa;
+    --text-dark: #212529;
+    --border-color: #dee2e6;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.navbar-brand {
+    letter-spacing: 0.5px;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 0.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card.shadow-sm:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
+}
+
+/* Tables */
+.table th {
+    font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.04);
+}
+
+/* QR Code Container */
+#qrcode canvas, #qrcode img {
+    margin: 0 auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* Scanner Area Customization */
+#reader {
+    border: 2px dashed var(--border-color) !important;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+#reader video {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 0.4rem;
+}
+
+/* Print Optimization */
+@media print {
+    .no-print, 
+    .navbar, 
+    .btn, 
+    .card-footer {
+        display: none !important;
+    }
+    
+    body {
+        background-color: #ffffff !important;
+    }
+
+    .card {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
